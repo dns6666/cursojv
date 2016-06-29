@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 public class Tarefa {
 	private Long id;
 	@NotNull
-	@Size(min = 5)
+	@Size(min = 5, message="Descrição não pode ser nulo.")
 	private String descricao;
 	private boolean finalizado;
 	private Calendar dataFinalizacao;

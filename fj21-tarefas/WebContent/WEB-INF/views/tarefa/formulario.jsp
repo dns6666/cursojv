@@ -10,7 +10,8 @@
 <body>
 	<h3>Adicionar tarefas</h3>
 	<form:errors path="tarefa.descricao" />
-	<form action="adicionaTarefa" method="post">
+	<br>
+	<form action="adicionaTarefa" method="post" >
 		Descrição: <br />
 		<textarea rows="5" cols="100" name="descricao"></textarea>
 		<br /> <input type="submit" value="Adicionar">
