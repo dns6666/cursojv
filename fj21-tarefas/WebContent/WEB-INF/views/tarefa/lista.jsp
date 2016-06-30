@@ -16,6 +16,11 @@
 			$("#tarefa_"+id).html("Finalizado");
 		});
 	}
+	function removeAgora(id) {
+		$.post("removeTarefa", {'id':id}, function(){
+			$(elementoHtml).closest("tr").hide();
+		});
+	}
 	</script>
 	<a href="novaTarefa">Criar nova Tarefa</a>
 	<table>
@@ -42,6 +47,7 @@
 						pattern="dd/MM/yyyy" /></td>
 				<td><a href="removeTarefa?id=${tarefa.id}">Remove</a></td>
 				<td><a href="mostraTarefa?id=${tarefa.id}">Altera</a></td>
+				<td><a href="#" onclick="removeAgora"></a></td>
 			</tr>
 		</c:forEach>
 	</table>
