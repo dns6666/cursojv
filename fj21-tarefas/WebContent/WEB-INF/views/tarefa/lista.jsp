@@ -9,15 +9,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Lista Tarefas</title>
 </head>
-<body>
-	<script type="text/javascript" >
+<body style="font-family: arial;">
+	<script type="text/javascript">
 	function finalizaAgora(id) {
-		$.post("finalizaTarefa", {'id': id}, function() {
-			$("#tarefa_"+id).html("Finalizado");
+		$.post("finalizaTarefa", {'id': id}, function(resposta) {
+			$("#tarefa_"+id).html(resposta);
 		});
 	}
-	function removeAgora(id) {
-		$.post("removeTarefa", {'id':id}, function(){
+
+	function removeAgora(id, elementoHtml) {
+		$.post("removeTarefa", {'id': id}, function(elementoHtml) {
 			$(elementoHtml).closest("tr").hide();
 		});
 	}
@@ -27,27 +28,26 @@
 		<tr bgcolor="cyan">
 			<th width="30px">Id</th>
 			<th width="500px">Descrição</th>
-			<th width="50px">Finalizado?</th>
+			<th width="150px">Finalizado?</th>
 			<th width="100px">Data de Finalização</th>
 			<th></th>
 			<th></th>
 		</tr>
 		<c:forEach items="${tarefas}" var="tarefa">
-			<tr bgcolor="yellow">
+			<tr id="tarefa_${tarefa.id}" bgcolor="yellow">
 				<td>${tarefa.id}</td>
 				<td>${tarefa.descricao}</td>
-				<td align="center" id="tarefa_${tarefa.id}">
 				<c:if test="${tarefa.finalizado eq true}">
-			    	Sim</c:if>
-			    <c:if test="${tarefa.finalizado eq false}">
-					<a href="#" onclick="finalizaAgora(${tarefa.id})">Finaliza
-							agora!</a>
-				</c:if></td>
+					<td>Sim</td>
+				</c:if>
+				<c:if test="${tarefa.finalizado eq false}">
+					<td><a href="#" onclick="finalizaAgora(${tarefa.id})">
+					Finaliza agora!</a></td>
+				</c:if>
 				<td><fmt:formatDate value="${tarefa.dataFinalizacao.time}"
 						pattern="dd/MM/yyyy" /></td>
-				<td><a href="removeTarefa?id=${tarefa.id}">Remove</a></td>
+				<td><a href="" onclick="removeAgora(${tarefa.id}, tarefa_${tarefa.id})">Remove</a></td>
 				<td><a href="mostraTarefa?id=${tarefa.id}">Altera</a></td>
-				<td><a href="#" onclick="removeAgora"></a></td>
 			</tr>
 		</c:forEach>
 	</table>
