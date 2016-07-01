@@ -23,7 +23,8 @@
 		});
 	}
 	</script>
-	<a href="novaTarefa">Criar nova Tarefa</a>
+	<a href="menu">Menu</a><br/><br/>
+	<a href="novaTarefa">Criar nova Tarefa</a><br/><br/>
 	<table>
 		<tr bgcolor="cyan">
 			<th width="30px">Id</th>

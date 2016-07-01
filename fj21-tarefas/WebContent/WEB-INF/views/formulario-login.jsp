@@ -9,8 +9,8 @@
 <body style="font-family: arial;">
 	<h2>Página de Login das Tarefas</h2>
 	<form action="efetuaLogin" method="post" >
-		Login:<input type="text" name="login" /><br /><br/>
-		Senha:<input type="password" name="senha" /><br /><br/>
+		Login: <input type="text" name="login" /><br /><br/>
+		Senha: <input type="password" name="senha" /><br /><br/>
 		<input type="submit"
 			value="Entrar nas Tarefas">
 	</form>

@@ -9,6 +9,7 @@
 <body style="font-family: arial;">
 	<h2>Página Inicial da Lista de Tarefas</h2>
 	<p>Bem vindo, ${usuarioLogado.login}</p>
-	<a href="listaTarefas">Clique aqui</a> para acessar a lista de Tarefas.
+	<a href="listaTarefas">Clique aqui</a> para acessar a lista de Tarefas.<br/><br/>
+	<a href="logout">Sair do sistema</a>
 </body>
 </html>

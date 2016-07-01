@@ -20,6 +20,11 @@ public class TarefasController {
 		return "tarefa/formulario";
 	}
 
+	@RequestMapping("menu")
+	public String menu() {
+		return "menu";
+	}
+
 	@RequestMapping("adicionaTarefa")
 	public String adiciona(@Valid Tarefa tarefa, BindingResult result) {
 		if (result.hasErrors()) {
@@ -64,9 +69,9 @@ public class TarefasController {
 		mv.addObject(dao.buscaPorId(id));
 		return mv;
 	}
-	
+
 	@RequestMapping("finalizaTarefa")
-	public String finaliza (Long id, Model model){
+	public String finaliza(Long id, Model model) {
 		JdbcTarefaDao dao = new JdbcTarefaDao();
 		dao.finaliza(id);
 		model.addAttribute("tarefa", dao.buscaPorId(id));

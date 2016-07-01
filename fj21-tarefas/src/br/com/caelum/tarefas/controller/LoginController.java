@@ -12,7 +12,8 @@ import br.com.caelum.tarefas.modelo.Usuario;
 public class LoginController {
 	
 	@RequestMapping("loginForm")
-	public String loginForm(){
+	public String loginForm(HttpSession session){
+		session.invalidate();
 		return "formulario-login";
 		
 	}
@@ -20,9 +21,15 @@ public class LoginController {
 	@RequestMapping("efetuaLogin")
 	public String efetuaLogin(Usuario usuario, HttpSession session){
 		if (new JdbcUsuarioDao().existeUsuario(usuario)){
-			session.setAttribute("usuariologado", usuario);
+			session.setAttribute("usuarioLogado", usuario);
 			return "menu";
 		}
+		return "redirect:loginForm";
+	}
+	
+	@RequestMapping("logout")
+	public String logout(HttpSession session){
+		session.invalidate();
 		return "redirect:loginForm";
 	}
 }
