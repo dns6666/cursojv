@@ -1,4 +1,4 @@
-package br.com.caelum.argento.modelo;
+package br.com.caelum.argentum.modelo;
 
 import java.util.Calendar;
 
@@ -12,6 +12,9 @@ public final class Candlestick {
 
 	public Candlestick(double abertura, double fechamento, double minimo,
 			double maximo, double volume, Calendar data) {
+		if (minimo > maximo) {
+			throw new IllegalArgumentException("Valor mínimo não pode ser maior que o máximo");
+		}
 		this.abertura = abertura;
 		this.fechamento = fechamento;
 		this.minimo = minimo;
