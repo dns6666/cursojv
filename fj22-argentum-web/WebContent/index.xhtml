@@ -12,7 +12,7 @@
 	<h:form>
 		<p:dataTable var="negociacao" value="#{argentumBean.negociacoes}"
 			paginator="true" rows="15" draggableColumns="true"
-			resizableColumns="true">
+			r>
 			<p:column headerText="Preço" sortBy="#{negociacao.preco}">
 				<h:outputText value="#{negociacao.preco}" />
 			</p:column>
