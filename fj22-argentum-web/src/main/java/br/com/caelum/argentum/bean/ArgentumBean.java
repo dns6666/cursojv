@@ -1,14 +1,21 @@
 package br.com.caelum.argentum.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 import br.com.caelum.argentum.modelo.Negociacao;
 import br.com.caelum.argentum.ws.ClienteWebService;
 
 @ManagedBean
-public class ArgentumBean {
+@ViewScoped
+public class ArgentumBean implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7616190451951720869L;
 	private List<Negociacao> negociacoes;
 	
 	public ArgentumBean(){
