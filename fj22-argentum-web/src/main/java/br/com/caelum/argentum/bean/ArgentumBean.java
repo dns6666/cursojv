@@ -6,7 +6,13 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.model.chart.ChartModel;
+
+import br.com.caelum.argentum.grafico.GeradorModeloGrafico;
+import br.com.caelum.argentum.modelo.Candle;
+import br.com.caelum.argentum.modelo.CandleFactory;
 import br.com.caelum.argentum.modelo.Negociacao;
+import br.com.caelum.argentum.modelo.SerieTemporal;
 import br.com.caelum.argentum.ws.ClienteWebService;
 
 @ManagedBean
@@ -17,12 +23,24 @@ public class ArgentumBean implements Serializable {
 	 */
 	private static final long serialVersionUID = -7616190451951720869L;
 	private List<Negociacao> negociacoes;
-	
-	public ArgentumBean(){
-		negociacoes = new ClienteWebService().getNegociacoes();
+	private ChartModel modeloGrafico;
+
+	public ArgentumBean() {
+		this.negociacoes = new ClienteWebService().getNegociacoes();
+		List<Candle> candles = new CandleFactory().constroiCandles(negociacoes);
+		SerieTemporal serie = new SerieTemporal(candles);
+
+		GeradorModeloGrafico geradorGrafico = new GeradorModeloGrafico(serie,
+				2, serie.getUltimaPosicao());
+		geradorGrafico.plotaMediaMovelSimples();
+		this.modeloGrafico = geradorGrafico.getModeloGrafico();
 	}
-	
-	public List<Negociacao> getNegociacoes(){
+
+	public List<Negociacao> getNegociacoes() {
 		return negociacoes;
+	}
+
+	public ChartModel getModeloGrafico() {
+		return modeloGrafico;
 	}
 }
