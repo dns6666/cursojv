@@ -9,6 +9,7 @@ import javax.faces.bean.ViewScoped;
 import org.primefaces.model.chart.ChartModel;
 
 import br.com.caelum.argentum.grafico.GeradorModeloGrafico;
+import br.com.caelum.argentum.indicadores.IndicadorFechamento;
 import br.com.caelum.argentum.indicadores.MediaMovelSimples;
 import br.com.caelum.argentum.modelo.Candle;
 import br.com.caelum.argentum.modelo.CandleFactory;
@@ -19,9 +20,7 @@ import br.com.caelum.argentum.ws.ClienteWebService;
 @ManagedBean
 @ViewScoped
 public class ArgentumBean implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -7616190451951720869L;
 	private List<Negociacao> negociacoes;
 	private ChartModel modeloGrafico;
@@ -33,7 +32,7 @@ public class ArgentumBean implements Serializable {
 
 		GeradorModeloGrafico geradorGrafico = new GeradorModeloGrafico(serie,
 				2, serie.getUltimaPosicao());
-		geradorGrafico.plotaIndicador(new MediaMovelSimples());
+		geradorGrafico.plotaIndicador(new MediaMovelSimples(new IndicadorFechamento()));
 		this.modeloGrafico = geradorGrafico.getModeloGrafico();
 	}
 
