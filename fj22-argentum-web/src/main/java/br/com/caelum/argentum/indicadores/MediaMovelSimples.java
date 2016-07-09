@@ -19,6 +19,6 @@ public class MediaMovelSimples implements Indicador {
 	}
 	
 	public String toString(){
-		return outroIndicador.toString();
+		return "MMS - "+outroIndicador.toString();
 	}
 }
